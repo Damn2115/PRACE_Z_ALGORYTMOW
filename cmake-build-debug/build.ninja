@@ -55,6 +55,12 @@ build CMakeFiles/PraceDomowe.dir/PracaDomowa1.c.obj: C_COMPILER__PraceDomowe_uns
   OBJECT_DIR = CMakeFiles\PraceDomowe.dir
   OBJECT_FILE_DIR = CMakeFiles\PraceDomowe.dir
 
+build CMakeFiles/PraceDomowe.dir/PracaDomowa2.c.obj: C_COMPILER__PraceDomowe_unscanned_Debug C$:/Users/damia/CLionProjects/PraceDomowe/PracaDomowa2.c || cmake_object_order_depends_target_PraceDomowe
+  DEP_FILE = CMakeFiles\PraceDomowe.dir\PracaDomowa2.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\PraceDomowe.dir
+  OBJECT_FILE_DIR = CMakeFiles\PraceDomowe.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target PraceDomowe
@@ -63,7 +69,7 @@ build CMakeFiles/PraceDomowe.dir/PracaDomowa1.c.obj: C_COMPILER__PraceDomowe_uns
 #############################################
 # Link the executable PraceDomowe.exe
 
-build PraceDomowe.exe: C_EXECUTABLE_LINKER__PraceDomowe_Debug CMakeFiles/PraceDomowe.dir/PracaDomowa1.c.obj
+build PraceDomowe.exe: C_EXECUTABLE_LINKER__PraceDomowe_Debug CMakeFiles/PraceDomowe.dir/PracaDomowa1.c.obj CMakeFiles/PraceDomowe.dir/PracaDomowa2.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\PraceDomowe.dir

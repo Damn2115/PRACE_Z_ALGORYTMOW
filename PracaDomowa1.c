@@ -26,10 +26,9 @@ int main() {
         }
     }
     checkIfPrimeNumber(&head);
-    saveOnFile(&head);
     showList(head);
-    freeMemory(&head);//PRZEZ TO FREE MEMORY USUWA MI MOJE DANE Z PLIKU,
-    // idk dlaczego
+    saveOnFile(&head);
+    freeMemory(&head);
 }
 
 //Dodaje dane do nowego punktu w liscie
@@ -80,7 +79,7 @@ void checkIfPrimeNumber(numbers** list){
             i->ifDeleted = 1;
         }
         for(numbers* a = *list; a != NULL; a = a->next){
-            if(i->number%a->number == 0){
+            if(i->number%a -> number == 0){
                 if(i->number == a->number){
                     break;
                 }else{
@@ -93,12 +92,13 @@ void checkIfPrimeNumber(numbers** list){
 
 //zapisuje liczby pierwsze(te z isDeleted=0) na pliku liczby.txt
 void saveOnFile(numbers** list){
-    FILE* save;
-    save = fopen("liczby.txt", "w");
-    fprintf(save, "%d\n", 2);
-    for(numbers* i = *list; i != NULL; i = i->next){
+    FILE* file;
+    file = fopen("liczby.txt", "w");
+    fprintf(file, "%d\n", 2);
+    for(numbers *i = *list; i != NULL; i = i->next){
         if(i->ifDeleted == 0){
-            fprintf(save, "%d\n", i->number);
+            fprintf(file, "%d\n", i->number);
         }
     }
+    fclose(file);
 }
