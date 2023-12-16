@@ -4,7 +4,7 @@
 int lastNumber;
 typedef struct numbers {
     int number;
-    int ifDeleted;
+    int ifDeleted;//Czy liczba jest pierwsza
     struct numbers * next;
 }numbers;
 
@@ -72,7 +72,7 @@ void freeMemory(numbers** list){
     }
 }
 
-//sprawdza i ew. usuwa(zamienia isDeleted na 1), jesli liczba nie jest pierwsza
+//sprawdza i ew. usuwa(zamienia ifDeleted na 1), jesli liczba nie jest pierwsza
 void checkIfPrimeNumber(numbers** list){
     for(numbers* i = *list; i != NULL; i = i->next){
         if(i->number%2 == 0){
@@ -90,7 +90,7 @@ void checkIfPrimeNumber(numbers** list){
     }
 }
 
-//zapisuje liczby pierwsze(te z isDeleted=0) na pliku liczby.txt
+//zapisuje liczby pierwsze(te z ifDeleted=0) na pliku liczby.txt
 void saveOnFile(numbers** list){
     FILE* file;
     file = fopen("liczby.txt", "w");
