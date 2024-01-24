@@ -1,22 +1,28 @@
+/*
+    Damian Stania
+    Zajęcia: 7.12.2023 Zadanie oddane: 16.12.2023
+    Sito Eratostenesa
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
 int lastNumber;
-typedef struct numbers {
+typedef struct Numbers {
     int number;
     int ifDeleted;//Czy liczba jest pierwsza
-    struct numbers * next;
-}numbers;
+    struct Numbers * next;
+}Numbers;
 
-void addMemory(numbers** list, int newNumber);
-void addElement(numbers** list, numbers* newElement);
-void showList(numbers* list);
-void freeMemory(numbers** list);
-void checkIfPrimeNumber(numbers** list);
-void saveOnFile(numbers** list);
+void addMemory(Numbers** list, int newNumber);
+void addElement(Numbers** list, Numbers* newElement);
+void showList(Numbers* list);
+void freeMemory(Numbers** list);
+void checkIfPrimeNumber(Numbers** list);
+void saveOnFile(Numbers** list);
 
-int main() {
-    numbers* head = NULL;
+int mainn() {
+    Numbers* head = NULL;
     printf("Sito Eratostenesa\n"
            "Prosze wpisac ostatnia liczbe przedzialu: ");
     if(scanf("%i", &lastNumber)){
@@ -32,9 +38,9 @@ int main() {
 }
 
 //Dodaje dane do nowego punktu w liscie
-void addMemory(numbers** list, int newNumber){
-    numbers* newElement = (numbers *)
-            malloc(sizeof(numbers));
+void addMemory(Numbers** list, int newNumber){
+    Numbers* newElement = (Numbers *)
+            malloc(sizeof(Numbers));
     newElement->number = newNumber;
     newElement->ifDeleted = 0;
     newElement->next = NULL;
@@ -42,14 +48,14 @@ void addMemory(numbers** list, int newNumber){
 }
 
 //Dodaje nowy punkt do listy
-void addElement(numbers** list, numbers* newElement){
+void addElement(Numbers** list, Numbers* newElement){
     //Lista jest pusta
     if(*list == NULL){
         *list = newElement;
     }
         //Lista ma w sobie coś
     else {
-        for(numbers* i = *list; i != NULL; i = i->next){
+        for(Numbers* i = *list; i != NULL; i = i->next){
             if(i->next == NULL){
                 i->next = newElement;
                 break;
@@ -59,26 +65,26 @@ void addElement(numbers** list, numbers* newElement){
 }
 
 //wyswietla aktualny stan listy
-void showList(numbers* list){
-    for(numbers* i = list; i != NULL; i = i->next){
+void showList(Numbers* list){
+    for(Numbers* i = list; i != NULL; i = i->next){
         printf("%d - %d\n", i->number, i->ifDeleted);
     }
 }
 
 //uwalnia pamiec zarezerwowana wczesniej przez malloc
-void freeMemory(numbers** list){
-    for(numbers* i = *list; i != NULL; i = i->next){
+void freeMemory(Numbers** list){
+    for(Numbers* i = *list; i != NULL; i = i->next){
         free(i);
     }
 }
 
 //sprawdza i ew. usuwa(zamienia ifDeleted na 1), jesli liczba nie jest pierwsza
-void checkIfPrimeNumber(numbers** list){
-    for(numbers* i = *list; i != NULL; i = i->next){
+void checkIfPrimeNumber(Numbers** list){
+    for(Numbers* i = *list; i != NULL; i = i->next){
         if(i->number%2 == 0){
             i->ifDeleted = 1;
         }
-        for(numbers* a = *list; a != NULL; a = a->next){
+        for(Numbers* a = *list; a != NULL; a = a->next){
             if(i->number%a -> number == 0){
                 if(i->number == a->number){
                     break;
@@ -91,11 +97,11 @@ void checkIfPrimeNumber(numbers** list){
 }
 
 //zapisuje liczby pierwsze(te z ifDeleted=0) na pliku liczby.txt
-void saveOnFile(numbers** list){
+void saveOnFile(Numbers** list){
     FILE* file;
     file = fopen("liczby.txt", "w");
     fprintf(file, "%d\n", 2);
-    for(numbers *i = *list; i != NULL; i = i->next){
+    for(Numbers *i = *list; i != NULL; i = i->next){
         if(i->ifDeleted == 0){
             fprintf(file, "%d\n", i->number);
         }
